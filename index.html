@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E5E50">
+<title>여수·순천 수학여행 안내</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#0E5E50;--accent-soft:#E2EFEA;--ground:#F3F5F1;--ink:#15201B;--muted:#55615A;--line:#E4E9E3;--warn:#B4470B;--warn-soft:#FBEDE3;--warn-ink:#8A3508}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--ground);color:var(--ink);font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-text-size-adjust:100%}
+button{font-family:inherit;cursor:pointer}
+a{color:var(--accent)}
+.app{max-width:520px;margin:0 auto;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+header{background:var(--accent);color:#fff;padding:calc(20px + env(safe-area-inset-top)) 20px 18px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;z-index:2}
+.hrow{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.school{font-size:13px;font-weight:500;opacity:.9}
+.badge{font-size:13px;font-weight:600;background:rgba(255,255,255,.16);padding:4px 10px;border-radius:999px;white-space:nowrap}
+h1{margin:0;font-size:26px;font-weight:700}
+.dates{font-size:14px;opacity:.9}
+main{flex:1;padding:16px 16px 100px;display:flex;flex-direction:column;gap:14px}
+.card{background:#fff;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+h2{margin:0;font-size:15px;font-weight:600}
+.big{font-size:18px;font-weight:700}
+.muted{font-size:13px;color:var(--muted);line-height:1.5;margin:0}
+.grid5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.chip{height:44px;border-radius:10px;font-size:15px;font-weight:600;border:1px solid #DDE3DC;background:#fff;color:var(--ink)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.step{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.num{width:30px;height:30px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.grow{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.t15{font-size:15px;font-weight:600}
+.when{font-size:13px;font-weight:600;white-space:nowrap}
+.quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.qbtn{border-radius:14px;padding:14px;min-height:76px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;text-decoration:none;font-size:15px;font-weight:600}
+.qbtn.call{background:var(--warn);color:#fff;border:0}
+.qbtn.safe{background:#fff;color:var(--ink);border:1px solid #DDE3DC}
+.notice{background:var(--warn-soft);border-radius:14px;padding:14px 16px}
+.notice h2{font-size:14px;font-weight:700;color:var(--warn-ink);margin-bottom:6px}
+.notice p{margin:0;font-size:14px;line-height:1.55;color:#3A2414}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;background:var(--line);padding:4px;border-radius:12px}
+.seg button{height:44px;border:0;border-radius:9px;font-size:15px;font-weight:600;background:transparent;color:var(--muted)}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(21,32,27,.12)}
+.tl{background:#fff;border-radius:16px;padding:6px 16px}
+.ev{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.ev:last-child{border-bottom:0}
+.time{width:52px;flex-shrink:0;display:flex;flex-direction:column;gap:1px;font-variant-numeric:tabular-nums}
+.time b{font-size:14px;font-weight:600}
+.time span{font-size:12px;color:var(--muted)}
+.tag{align-self:flex-start;font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:999px}
+.sub{font-size:13px;color:var(--muted);line-height:1.45}
+.sos{background:var(--warn);color:#fff}
+.sos h2{font-size:16px;font-weight:700}
+.sos a{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.14);color:#fff;text-decoration:none;border-radius:10px;padding:0 14px;min-height:48px;font-size:15px}
+ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+li{font-size:14px;line-height:1.55;color:#26322C}
+.prow{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.loc{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--muted)}
+dl{margin:0;display:grid;grid-template-columns:56px 1fr;gap:6px 10px;font-size:14px;line-height:1.5}
+dt{color:var(--muted);font-weight:500}dd{margin:0}
+dt.w{color:var(--warn-ink);font-weight:600}dd.w{color:#3A2414}
+nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #DDE3DC;padding-bottom:env(safe-area-inset-bottom);z-index:3}
+nav .in{max-width:520px;margin:0 auto;height:68px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+nav button{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:500;color:var(--muted)}
+nav button.on{color:var(--accent);font-weight:700}
+svg{flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="hrow">
+      <span class="school">[학교 이름] 남도문화 수학여행</span>
+      <span class="badge" id="badge"></span>
+    </div>
+    <h1>여수 · 순천 수학여행</h1>
+    <span class="dates">10월 21일(수) – 23일(금) · 2박 3일</span>
+  </header>
+  <main id="main"></main>
+</div>
+<nav aria-label="주 메뉴"><div class="in">
+  <button type="button" data-tab="home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>홈</button>
+  <button type="button" data-tab="schedule"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>일정</button>
+  <button type="button" data-tab="safety"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>안전</button>
+  <button type="button" data-tab="places"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>장소</button>
+</div></nav>
+
+<script>
+/* ===== 연락처 (여기만 고치면 됩니다) ===== */
+const CONTACTS = [
+  { who: '인솔 총괄 선생님', num: '[연락처]' },
+  { who: '담임 선생님', num: '[연락처]' },
+  { who: '보건 선생님', num: '[연락처]' },
+  { who: '응급 · 화재', num: '119' }
+];
+
+const SITES = {
+  garden: { name: '순천만국가정원', place: '전남 순천시', bring: '운동화, 물, 모자', caution: '반별로 움직이고 집결 시간·장소를 꼭 지키기' },
+  zip: { name: '여수 짚라인', place: '전남 여수시', bring: '운동화(슬리퍼 불가), 소지품 최소화', caution: '안전장비를 착용하고 진행요원 신호에 따라 출발하기' },
+  luge: { name: '루지 체험 (2회)', place: '전남 여수시', bring: '운동화', caution: '헬멧 착용, 앞 루지와 간격 유지, 추월 금지' },
+  hyang: { name: '향일암', place: '전남 여수시 돌산읍', bring: '운동화, 물', caution: '계단·바위길이 가파르니 뛰지 않기, 사찰 예절 지키기' },
+  cable: { name: '여수 해상케이블카', place: '돌산대교 ↔ 오동도', bring: '외투(바닷바람 대비)', caution: '캐빈 안에서 일어서거나 흔들지 않기' },
+  arte: { name: '여수 아르떼뮤지엄', place: '전남 여수시', bring: '휴대폰(사진 촬영)', caution: '전시실 안에서 뛰지 않기, 관람 예절 지키기' }
+};
+
+/* [시간, 일정, 설명, 체험 장소 키] */
+const D1_SUNCHEON = [
+  ['07:30', '수원역 집결', '반별 출석 확인'],
+  ['08:00', '전세열차 #4549 수원역 도착', '탑승 준비'],
+  ['08:10', '수원역 출발', '전세열차 #4549'],
+  ['12:00', '순천역 도착', '순천역 하차 · 반별 버스 탑승'],
+  ['13:00-14:00', '중식 · 행복한 밥집', '외부식'],
+  ['14:30-17:30', '순천만국가정원', '전남 순천시', 'garden'],
+  ['18:00-18:30', '숙소 도착 · 생활안내', '호텔 JCS 여수'],
+  ['18:30-19:30', '저녁식사', '숙소식'],
+  ['20:00-21:30', '학급별 자유일정', '담임 선생님 안내에 따름'],
+  ['21:30-22:00', '휴식 및 학급 활동', '']
+];
+const D1_YEOSU = (first, second) => [
+  ['07:30', '수원역 집결', '반별 출석 확인'],
+  ['08:00', '전세열차 #4549 수원역 도착', '탑승 준비'],
+  ['08:10', '수원역 출발', '전세열차 #4549'],
+  ['12:00', '순천역 도착', '하차하지 않고 계속 이동'],
+  ['12:25', '여수EXPO역 도착', '여수EXPO역 하차 · 반별 버스 탑승'],
+  ['13:00-14:30', '중식 · 여수 샤브올데이', '외부식'],
+  first, second,
+  ['17:30-18:00', '숙소 도착 · 생활안내', '호텔 JCS 여수'],
+  ['18:30-19:30', '저녁식사', '숙소식'],
+  ['20:00-21:30', '학급별 자유일정', '담임 선생님 안내에 따름'],
+  ['21:30-22:00', '휴식 및 학급 활동', '']
+];
+const D3_YEOSU = [
+  ['07:00-08:00', '아침식사', '숙소식 · 짐 정리'],
+  ['08:30', '숙소 출발', '체크아웃 · 두고 가는 물건 확인'],
+  ['09:00-10:00', '여수 해상케이블카', '돌산대교 → 오동도', 'cable'],
+  ['10:10-11:10', '여수 아르떼뮤지엄', '전남 여수시', 'arte'],
+  ['11:30-13:00', '중식 · 여수 쿠우쿠우', '외부식 · 11:30 입장'],
+  ['13:30-14:00', '여수EXPO역 도착 · 탑승 수속', '반별 인원 확인'],
+  ['14:40', '여수EXPO역 출발', '전세열차 #4550'],
+  ['15:03', '순천역 도착', '정차'],
+  ['15:05', '순천역 출발', '전세열차 #4550'],
+  ['18:55', '수원역 도착 · 해산', '보호자 귀가 확인']
+];
+const D3_SUNCHEON = [
+  ['07:00-08:00', '아침식사', '숙소식 · 짐 정리'],
+  ['08:30', '숙소 출발', '체크아웃 · 두고 가는 물건 확인'],
+  ['09:30-12:30', '순천만국가정원', '전남 순천시', 'garden'],
+  ['13:00-14:00', '중식 · 행복한 밥집', '외부식'],
+  ['14:20-14:30', '순천역 도착 · 탑승 수속', '반별 인원 확인'],
+  ['15:03', '전세열차 #4550 순천역 도착', '탑승'],
+  ['15:05', '순천역 출발', '전세열차 #4550'],
+  ['18:55', '수원역 도착 · 해산', '보호자 귀가 확인']
+];
+const D2_HEAD = [['07:30-08:30', '아침식사', '숙소식'], ['09:00', '숙소 출발', '']];
+const D2_TAIL = (dinner) => [[dinner, '저녁식사', '숙소식'], ['19:30-21:30', '레크리에이션', '학년 전체'], ['21:30-22:30', '자유시간 · 휴식', '점호 후 방 밖 외출 금지']];
+const ZIP = (t, entry) => [t, '여수 짚라인', '전남 여수시 · ' + entry + ' 탑승', 'zip'];
+const LUGE = (t) => [t, '루지 체험 (2회)', '전남 여수시', 'luge'];
+const HYANG = (t) => [t, '향일암', '전남 여수시 돌산읍', 'hyang'];
+
+const GROUPS = [
+  { name: '1조', classes: [3, 4, 6], station: '순천역 하차', days: {
+    1: D1_SUNCHEON,
+    2: D2_HEAD.concat([ZIP('10:00-11:30', '10:00'), ['12:00-13:30', '중식 · 샤브올데이', '외부식'], LUGE('14:00-15:00'), HYANG('16:00-17:30')], D2_TAIL('18:00-19:00')),
+    3: D3_YEOSU } },
+  { name: '2조', classes: [1, 10], station: '순천역 하차', days: {
+    1: D1_SUNCHEON,
+    2: D2_HEAD.concat([LUGE('10:00-11:30'), ['12:00-13:30', '중식 · 샤브올데이', '외부식'], ZIP('14:00-15:30', '13:30'), HYANG('16:00-17:30')], D2_TAIL('18:00-19:00')),
+    3: D3_YEOSU } },
+  { name: '3조', classes: [2, 5, 7], station: '여수EXPO역 하차', days: {
+    1: D1_YEOSU(['15:00-16:00', '여수 아르떼뮤지엄', '전남 여수시', 'arte'], ['16:10-17:10', '여수 해상케이블카', '오동도 → 돌산대교', 'cable']),
+    2: D2_HEAD.concat([LUGE('10:00-11:00'), ['11:30-13:00', '중식 · 여수 쿠우쿠우', '외부식'], HYANG('14:00-15:00'), ZIP('15:30-17:00', '15:00')], D2_TAIL('17:30-18:30')),
+    3: D3_SUNCHEON } },
+  { name: '4조', classes: [8, 9], station: '여수EXPO역 하차', days: {
+    1: D1_YEOSU(['15:00-16:00', '여수 해상케이블카', '돌산대교 → 오동도', 'cable'], ['16:10-17:10', '여수 아르떼뮤지엄', '전남 여수시', 'arte']),
+    2: D2_HEAD.concat([ZIP('10:00-11:00', '10:00'), ['11:30-13:00', '중식 · 여수 쿠우쿠우', '외부식'], LUGE('13:30-14:30'), HYANG('15:30-16:30')], D2_TAIL('17:00-18:00')),
+    3: D3_SUNCHEON } }
+];
+const DAY_INFO = { 1: { label: '1일차 10/21(수)', short: '1일차' }, 2: { label: '2일차 10/22(목)', short: '2일차' }, 3: { label: '3일차 10/23(금)', short: '3일차' } };
+
+const RULES = [
+  { title: '열차·버스로 이동할 때', items: ['열차에서는 지정 좌석에 앉고 객차 연결 통로에 머물지 않아요.', '버스에서는 안전벨트를 항상 착용해요.', '반 대열을 유지하고 인원 확인 때 바로 대답해요.'] },
+  { title: '체험할 때', items: ['강사·진행요원 안내를 먼저 듣고 시작해요.', '짚라인·루지는 안전장비를 꼭 착용하고, 케이블카 안에서는 일어서지 않아요.', '몸이 안 좋으면 바로 선생님께 말해요.'] },
+  { title: '숙소(호텔 JCS 여수)에서', items: ['점호 이후 방 밖으로 나가지 않아요.', '다른 반·이성 방 출입은 금지예요.', '비상구 위치를 체크인할 때 확인해요.'] },
+  { title: '길을 잃거나 다쳤을 때', items: ['그 자리에 멈추고 담임 선생님께 전화해요.', '주변 친구와 함께 있고 혼자 움직이지 않아요.', '크게 다쳤으면 119에 먼저 연락해요.'] }
+];
+
+/* ===== 화면 ===== */
+const PHONE = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>';
+const SHIELD = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E5E50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>';
+const PIN = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+const tel = (n) => /^[0-9-]+$/.test(n) ? 'tel:' + n.replace(/-/g, '') : '#';
+
+function load() { try { return parseInt(localStorage.getItem('trip-class'), 10) || null; } catch (e) { return null; } }
+function save(n) { try { localStorage.setItem('trip-class', String(n)); } catch (e) {} }
+const urlClass = parseInt(new URLSearchParams(location.search).get('class'), 10);
+const state = { tab: 'home', day: 1, cls: (urlClass >= 1 && urlClass <= 10) ? urlClass : (load() || 3) };
+
+function build() {
+  const g = GROUPS.find((x) => x.classes.includes(state.cls));
+  let n = 0;
+  const days = {};
+  [1, 2, 3].forEach((d) => {
+    days[d] = g.days[d].map((r) => {
+      const [s, e] = r[0].split('-');
+      const site = r[3] ? SITES[r[3]] : null;
+      if (site) n += 1;
+      return { time: s, end: e ? '~' + e : '', range: e ? s + '–' + e : s, title: r[1], sub: site ? r[2] + ' · 준비물: ' + site.bring : r[2], site, order: site ? n : 0, day: d };
+    });
+  });
+  const course = [1, 2, 3].flatMap((d) => days[d]).filter((e) => e.site);
+  return { g, days, course };
+}
+
+function render() {
+  const { g, days, course } = build();
+  const cls = state.cls;
+  const mates = g.classes.filter((x) => x !== cls).map((x) => x + '반').join('·');
+  document.getElementById('badge').textContent = cls + '반 · ' + g.name;
+  document.querySelectorAll('nav button').forEach((b) => {
+    const on = b.dataset.tab === state.tab;
+    b.classList.toggle('on', on);
+    if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
+  });
+  let h = '';
+  if (state.tab === 'home') {
+    h += '<section class="card"><h2>우리 반 선택</h2><div class="grid5">' +
+      [1,2,3,4,5,6,7,8,9,10].map((x) => `<button type="button" class="chip${x === cls ? ' on' : ''}" data-cls="${x}" aria-pressed="${x === cls}">${x}반</button>`).join('') +
+      `</div><p class="muted">${cls}반은 ${mates}과 같은 ${g.name}로 함께 이동해요 · 갈 때 ${g.station}</p></section>`;
+    h += `<section class="card" style="gap:4px"><div class="prow" style="margin-bottom:8px"><h2>우리 반 체험 순서</h2><span class="muted">${g.name}</span></div>` +
+      course.map((e) => `<div class="step"><span class="num">${e.order}</span><div class="grow"><span class="t15">${e.site.name}</span><span class="muted">${e.site.place}</span></div><span class="when">${DAY_INFO[e.day].short} ${e.time}</span></div>`).join('') + '</section>';
+    h += `<div class="quick"><a class="qbtn call" href="${tel(CONTACTS[0].num)}">${PHONE}<span>인솔 선생님 전화</span></a><button type="button" class="qbtn safe" data-tab="safety">${SHIELD}<span>안전 수칙 보기</span></button></div>`;
+    h += '<section class="notice"><h2>꼭 기억하기</h2><p>1일차 07:30 수원역 집결 · 전세열차 #4549 탑승 · 이동할 때는 반 대열 유지 · 체험 장소에서 개인 행동 금지</p></section>';
+  } else if (state.tab === 'schedule') {
+    const region = state.day === 1 ? (g.station === '순천역 하차' ? '수원 → 순천 → 여수' : '수원 → 여수') : state.day === 2 ? '여수' : (g.station === '순천역 하차' ? '여수 → 수원' : '여수 → 순천 → 수원');
+    h += '<div class="seg" role="group" aria-label="일차 선택">' + [1, 2, 3].map((d) => `<button type="button" class="${d === state.day ? 'on' : ''}" data-day="${d}" aria-pressed="${d === state.day}">${DAY_INFO[d].short}</button>`).join('') + '</div>';
+    h += `<p class="muted" style="padding:0 4px">${DAY_INFO[state.day].label} · ${cls}반(${g.name}) 일정 · 지역: ${region}</p>`;
+    h += '<section class="tl">' + days[state.day].map((e) => `<div class="ev"><div class="time"><b>${e.time}</b><span>${e.end}</span></div><div class="grow" style="gap:3px">${e.site ? `<span class="tag">체험 ${e.order}</span>` : ''}<span class="t15">${e.title}</span>${e.sub ? `<span class="sub">${e.sub}</span>` : ''}</div></div>`).join('') + '</section>';
+  } else if (state.tab === 'safety') {
+    h += '<section class="card sos"><h2>비상 연락처</h2>' + CONTACTS.map((c, i) => `<a href="${tel(c.num)}"><span>${i === 1 ? cls + '반 ' + c.who : c.who}</span><b>${c.num}</b></a>`).join('') + '</section>';
+    h += RULES.map((r) => `<section class="card"><h2 style="font-size:16px;font-weight:700">${r.title}</h2><ol>${r.items.map((t) => `<li>${t}</li>`).join('')}</ol></section>`).join('');
+  } else {
+    h += `<p class="muted" style="padding:0 4px">${cls}반이 방문하는 순서대로 정렬돼요</p>`;
+    h += course.map((e) => `<section class="card"><div class="prow"><span class="tag">${e.order}번째 · ${DAY_INFO[e.day].label}</span><span class="muted">${e.range}</span></div><h2 class="big">${e.site.name}</h2><div class="loc">${PIN}<span>${e.site.place}</span></div><dl><dt>준비물</dt><dd>${e.site.bring}</dd><dt class="w">주의</dt><dd class="w">${e.site.caution}</dd></dl></section>`).join('');
+    h += `<section class="card" style="border:1px solid #B8C2B9;gap:6px"><span class="muted" style="font-weight:600">숙소 · 1–2일차 (10/21–10/22)</span><h2 class="big">호텔 JCS 여수</h2><span class="muted" style="font-size:14px">도착 1일차 ${g.station === '순천역 하차' ? '18:00' : '17:30'} · 생활안내 후 저녁식사</span><span style="font-size:14px;color:#26322C">아침·저녁은 숙소식이에요. 방 배정은 담임 선생님이 반별로 안내해요.</span></section>`;
+  }
+  document.getElementById('main').innerHTML = h;
+}
+
+document.addEventListener('click', (ev) => {
+  const t = ev.target.closest('[data-tab],[data-cls],[data-day]');
+  if (!t) return;
+  if (t.dataset.tab) { state.tab = t.dataset.tab; window.scrollTo(0, 0); }
+  if (t.dataset.cls) { state.cls = +t.dataset.cls; save(state.cls); }
+  if (t.dataset.day) state.day = +t.dataset.day;
+  render();
+});
+render();
+</script>
+</body>
+</html>
