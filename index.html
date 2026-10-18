@@ -111,6 +111,8 @@ const HOMEROOM = {
   9: { name: '조효정', num: '0508-0374-1795' },
   10: { name: '안보라미', num: '010-3440-2359' }
 };
+/* 전세열차 객차 번호 */
+const CARS = { 1: 7, 2: 1, 3: 5, 4: 5, 5: 1, 6: 6, 7: 2, 8: 3, 9: 3, 10: 7 };
 const HOTEL = { who: '숙소 · 호텔 JCS 여수', num: '061-643-5000' };
 
 const SITES = {
@@ -232,7 +234,8 @@ function build() {
       const [s, e] = r[0].replace('~', '').split('-');
       const site = r[3] ? SITES[r[3]] : null;
       if (site) n += 1;
-      return { time: s, end: tilde ? '까지' : (e ? '~' + e : ''), range: e ? s + '–' + e : s, title: r[1], sub: r[2], site, order: site ? n : 0, day: d };
+      const sub = r[1].includes('탑승 시작') ? CARS[state.cls] + '호차에 탑승' : r[2];
+      return { time: s, end: tilde ? '까지' : (e ? '~' + e : ''), range: e ? s + '–' + e : s, title: r[1], sub, site, order: site ? n : 0, day: d };
     });
   });
   const course = [1, 2, 3].flatMap((d) => days[d]).filter((e) => e.site);
@@ -254,10 +257,10 @@ function render() {
   if (state.tab === 'home') {
     h += '<section class="card"><h2>우리 반 선택</h2><div class="grid5">' +
       [1,2,3,4,5,6,7,8,9,10].map((x) => `<button type="button" class="chip${x === cls ? ' on' : ''}" data-cls="${x}" aria-pressed="${x === cls}">${x}반</button>`).join('') +
-      `</div><p class="muted">${cls}반은 ${mates}과 같은 ${g.name}로 함께 이동해요<br>갈 때 #4549 ${g.station} · 올 때 #4550 ${back}</p></section>`;
+      `</div><p class="muted">${cls}반은 ${mates}과 같은 ${g.name}로 함께 이동해요<br>갈 때 #4549 ${g.station} · 올 때 #4550 ${back}</p><p style="margin:0;font-size:15px;font-weight:700;color:var(--accent)">탑승 객차: ${CARS[cls]}호차</p></section>`;
     h += '<section class="notice"><h2>출발 전 꼭 확인</h2><ul>' +
       '<li><strong>10/21(수) 08:00</strong>까지 <strong>수원역 2층 대합실 안 롯데리아 앞</strong> 집결 (학부모 협조로 개별 도착)</li>' +
-      '<li>08:39 탑승 시작 · <strong>08:50 기차 정시 출발</strong> — 늦으면 탈 수 없어요</li>' +
+      `<li>08:39 탑승 시작 (<strong>${CARS[cls]}호차</strong>) · <strong>08:50 기차 정시 출발</strong> — 늦으면 탈 수 없어요</li>` +
       '<li>복귀: 10/23(금) 18:55 수원역 도착 → 종례 후 바로 귀가, 집 도착 즉시 담임 선생님께 문자</li>' +
       '</ul></section>';
     h += `<section class="card" style="gap:4px"><div class="prow" style="margin-bottom:8px"><h2>우리 반 체험 순서</h2><span class="muted">${g.name}</span></div>` +
