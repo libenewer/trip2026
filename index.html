@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0E5E50">
-<title>여수·순천 수학여행 안내</title>
+<title>곡정고 수학여행 안내</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--accent:#0E5E50;--accent-soft:#E2EFEA;--ground:#F3F5F1;--ink:#15201B;--muted:#55615A;--line:#E4E9E3;--warn:#B4470B;--warn-soft:#FBEDE3;--warn-ink:#8A3508}
+:root{--accent:#0E5E50;--accent-soft:#E2EFEA;--ground:#F3F5F1;--ink:#15201B;--muted:#55615A;--line:#E4E9E3;--warn:#B4470B;--warn-soft:#FBEDE3;--warn-ink:#8A3508;--rain:#1F4E8C;--rain-soft:#E4ECF6}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--ground);color:var(--ink);font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-text-size-adjust:100%}
 button{font-family:inherit;cursor:pointer}
@@ -37,9 +37,10 @@ h2{margin:0;font-size:15px;font-weight:600}
 .qbtn{border-radius:14px;padding:14px;min-height:76px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;text-decoration:none;font-size:15px;font-weight:600}
 .qbtn.call{background:var(--warn);color:#fff;border:0}
 .qbtn.safe{background:#fff;color:var(--ink);border:1px solid #DDE3DC}
-.notice{background:var(--warn-soft);border-radius:14px;padding:14px 16px}
-.notice h2{font-size:14px;font-weight:700;color:var(--warn-ink);margin-bottom:6px}
-.notice p{margin:0;font-size:14px;line-height:1.55;color:#3A2414}
+.notice{background:var(--warn-soft);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.notice h2{font-size:14px;font-weight:700;color:var(--warn-ink)}
+.notice ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.notice li{font-size:14px;line-height:1.5;color:#3A2414}
 .seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;background:var(--line);padding:4px;border-radius:12px}
 .seg button{height:44px;border:0;border-radius:9px;font-size:15px;font-weight:600;background:transparent;color:var(--muted)}
 .seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(21,32,27,.12)}
@@ -50,17 +51,25 @@ h2{margin:0;font-size:15px;font-weight:600}
 .time b{font-size:14px;font-weight:600}
 .time span{font-size:12px;color:var(--muted)}
 .tag{align-self:flex-start;font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:999px}
+.rain{align-self:flex-start;font-size:12px;font-weight:600;color:var(--rain);background:var(--rain-soft);padding:2px 8px;border-radius:999px}
 .sub{font-size:13px;color:var(--muted);line-height:1.45}
 .sos{background:var(--warn);color:#fff}
 .sos h2{font-size:16px;font-weight:700}
-.sos a{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.14);color:#fff;text-decoration:none;border-radius:10px;padding:0 14px;min-height:48px;font-size:15px}
-ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.sos a{display:flex;justify-content:space-between;align-items:center;gap:8px;background:rgba(255,255,255,.14);color:#fff;text-decoration:none;border-radius:10px;padding:0 14px;min-height:48px;font-size:15px}
+ol,ul.plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
 li{font-size:14px;line-height:1.55;color:#26322C}
+details.card{gap:0}
+details summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;min-height:28px;font-size:16px;font-weight:700}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';font-size:22px;font-weight:400;color:var(--muted)}
+details[open] summary::after{content:'−'}
+details[open] summary{margin-bottom:10px}
 .prow{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .loc{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--muted)}
-dl{margin:0;display:grid;grid-template-columns:56px 1fr;gap:6px 10px;font-size:14px;line-height:1.5}
+dl{margin:0;display:grid;grid-template-columns:64px 1fr;gap:6px 10px;font-size:14px;line-height:1.5}
 dt{color:var(--muted);font-weight:500}dd{margin:0}
 dt.w{color:var(--warn-ink);font-weight:600}dd.w{color:#3A2414}
+dt.r{color:var(--rain);font-weight:600}
 nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #DDE3DC;padding-bottom:env(safe-area-inset-bottom);z-index:3}
 nav .in{max-width:520px;margin:0 auto;height:68px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
 nav button{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:500;color:var(--muted)}
@@ -72,11 +81,11 @@ svg{flex-shrink:0}
 <div class="app">
   <header>
     <div class="hrow">
-      <span class="school">[학교 이름] 남도문화 수학여행</span>
+      <span class="school">곡정고등학교 2학년 주제별 체험학습</span>
       <span class="badge" id="badge"></span>
     </div>
     <h1>여수 · 순천 수학여행</h1>
-    <span class="dates">10월 21일(수) – 23일(금) · 2박 3일</span>
+    <span class="dates">2026. 10. 21(수) – 10. 23(금) · 2박 3일</span>
   </header>
   <main id="main"></main>
 </div>
@@ -91,97 +100,105 @@ svg{flex-shrink:0}
 /* ===== 연락처 (여기만 고치면 됩니다) ===== */
 const CONTACTS = [
   { who: '인솔 총괄 선생님', num: '[연락처]' },
-  { who: '담임 선생님', num: '[연락처]' }
+  { who: '담임 선생님', num: '[연락처]' },
+  { who: '숙소 · 호텔 JCS 여수', num: '061-643-5000' }
 ];
 
 const SITES = {
-  garden: { name: '순천만국가정원', place: '전남 순천시', bring: '운동화, 물, 모자', caution: '반별로 움직이고 집결 시간·장소를 꼭 지키기' },
-  zip: { name: '여수 짚라인', place: '전남 여수시', bring: '운동화(슬리퍼 불가), 소지품 최소화', caution: '안전장비를 착용하고 진행요원 신호에 따라 출발하기' },
-  luge: { name: '루지 체험 (2회)', place: '전남 여수시', bring: '운동화', caution: '헬멧 착용, 앞 루지와 간격 유지, 추월 금지' },
-  hyang: { name: '향일암', place: '전남 여수시 돌산읍', bring: '운동화, 물', caution: '계단·바위길이 가파르니 뛰지 않기, 사찰 예절 지키기' },
-  cable: { name: '여수 해상케이블카', place: '돌산대교 ↔ 오동도', bring: '외투(바닷바람 대비)', caution: '캐빈 안에서 일어서거나 흔들지 않기' },
-  arte: { name: '여수 아르떼뮤지엄', place: '전남 여수시', bring: '휴대폰(사진 촬영)', caution: '전시실 안에서 뛰지 않기, 관람 예절 지키기' }
+  garden: { name: '순천만국가정원', place: '전남 순천시', bring: '운동화, 모자, 자외선차단제', caution: '반별로 움직이고 집결 시간·장소를 꼭 지키기, 출입금지 구역 들어가지 않기' },
+  zip: { name: '여수 짚라인', place: '전남 여수시', rain: '여수 아쿠아플라넷', bring: '운동화(슬리퍼 불가), 소지품 최소화', caution: '안전장비를 착용하고 진행요원 신호에 따라 출발하기' },
+  luge: { name: '루지 체험 (2회)', place: '전남 여수시', rain: '해양수산과학관', bring: '운동화', caution: '헬멧 착용, 앞 루지와 간격 유지, 추월 금지' },
+  hyang: { name: '향일암', place: '전남 여수시 돌산읍', bring: '운동화', caution: '계단·바위길이 가파르니 뛰지 않기, 문화재를 만지지 않기' },
+  cable: { name: '여수 해상케이블카', place: '돌산대교 ↔ 오동도', bring: '긴팔 겉옷(바닷바람 대비)', caution: '캐빈 안에서 일어서거나 흔들지 않기' },
+  arte: { name: '여수 아르떼뮤지엄', place: '전남 여수시', bring: '휴대폰(사진 촬영)', caution: '전시실 안에서 뛰지 않기, 정숙하게 관람하기' }
 };
 
 /* [시간, 일정, 설명, 체험 장소 키] */
-const D1_SUNCHEON = [
-  ['07:30', '수원역 집결', '반별 출석 확인'],
-  ['08:00', '전세열차 #4549 수원역 도착', '탑승 준비'],
-  ['08:10', '수원역 출발', '전세열차 #4549'],
-  ['12:00', '순천역 도착', '순천역 하차 · 반별 버스 탑승'],
-  ['13:00-14:00', '중식 · 행복한 밥집', '외부식'],
-  ['14:30-17:30', '순천만국가정원', '전남 순천시', 'garden'],
-  ['18:00-18:30', '숙소 도착 · 생활안내', '호텔 JCS 여수'],
+const D1_START = [
+  ['08:00', '수원역 집결', '수원역 2층 대합실 안 롯데리아 앞 · 출석 체크 · 학부모 협조로 개별 도착'],
+  ['08:39', '전세열차 #4549 탑승 시작', '조별 지정 객차에 탑승'],
+  ['08:50', '수원역 출발', '기차는 정시 출발 · 시간 엄수'],
+  ['12:31', '순천역 도착', '']
+];
+const D1_END = [
   ['18:30-19:30', '저녁식사', '숙소식'],
   ['20:00-21:30', '학급별 자유일정', '담임 선생님 안내에 따름'],
-  ['21:30-22:00', '휴식 및 학급 활동', '']
+  ['21:30-22:00', '휴식 및 학급 활동', ''],
+  ['22:00', '야간점호 후 취침', '']
 ];
-const D1_YEOSU = (first, second) => [
-  ['07:30', '수원역 집결', '반별 출석 확인'],
-  ['08:00', '전세열차 #4549 수원역 도착', '탑승 준비'],
-  ['08:10', '수원역 출발', '전세열차 #4549'],
-  ['12:00', '순천역 도착', '하차하지 않고 계속 이동'],
-  ['12:25', '여수EXPO역 도착', '여수EXPO역 하차 · 반별 버스 탑승'],
-  ['13:00-14:30', '중식 · 여수 샤브올데이', '외부식'],
-  first, second,
-  ['17:30-18:00', '숙소 도착 · 생활안내', '호텔 JCS 여수'],
-  ['18:30-19:30', '저녁식사', '숙소식'],
-  ['20:00-21:30', '학급별 자유일정', '담임 선생님 안내에 따름'],
-  ['21:30-22:00', '휴식 및 학급 활동', '']
-];
-const D3_YEOSU = [
-  ['07:00-08:00', '아침식사', '숙소식 · 짐 정리'],
-  ['08:30', '숙소 출발', '체크아웃 · 두고 가는 물건 확인'],
+const D1_SUNCHEON = [].concat(
+  D1_START.slice(0, 3), [['12:31', '순천역 도착', '순천역 하차 · 버스 탑승']],
+  [['13:00-14:00', '중식 · 행복한 밥집', '외부식'],
+   ['14:30-17:30', '순천만국가정원', '전남 순천시', 'garden'],
+   ['18:00-18:30', '숙소 도착 · 생활안내', '호텔 JCS 여수']],
+  D1_END);
+const D1_YEOSU = (first, second) => [].concat(
+  D1_START.slice(0, 3), [['12:31', '순천역 경유', '하차하지 않고 계속 이동'], ['13:07', '여수EXPO역 도착', '여수EXPO역 하차 · 버스 탑승']],
+  [['13:40-14:40', '중식 · 여수 샤브올데이', '외부식'], first, second,
+   ['17:30-18:00', '숙소 도착 · 생활안내', '호텔 JCS 여수']],
+  D1_END);
+const D2_HEAD = [['~07:30', '기상 및 세면', ''], ['07:30-08:30', '아침식사 및 학생 확인', '숙소식'], ['09:00', '숙소 출발', '']];
+const D2_TAIL = (dinner) => [[dinner, '저녁식사', '숙소식'], ['19:30-21:30', '레크리에이션', ''], ['21:30-22:30', '자유시간 · 휴식', ''], ['22:30', '야간점호 후 취침', '']];
+const ZIP = (t) => [t, '여수 짚라인', '우천 시 여수 아쿠아플라넷', 'zip'];
+const LUGE = (t) => [t, '루지 체험 (2회)', '우천 시 해양수산과학관', 'luge'];
+const HYANG = (t) => [t, '향일암', '전남 여수시 돌산읍', 'hyang'];
+const D3_HEAD = [['~07:30', '기상 및 세면', '짐 정리'], ['07:00-08:00', '아침식사', '숙소식'], ['08:30', '숙소 출발', '체크아웃 · 두고 가는 물건 확인']];
+const D3_YEOSU = D3_HEAD.concat([
   ['09:00-10:00', '여수 해상케이블카', '돌산대교 → 오동도', 'cable'],
   ['10:10-11:10', '여수 아르떼뮤지엄', '전남 여수시', 'arte'],
   ['11:30-13:00', '중식 · 여수 쿠우쿠우', '외부식 · 11:30 입장'],
-  ['13:30-14:00', '여수EXPO역 도착 · 탑승 수속', '반별 인원 확인'],
-  ['14:40', '여수EXPO역 출발', '전세열차 #4550'],
+  ['13:30-14:00', '여수EXPO역 도착 · 탑승 수속', ''],
+  ['14:40', '여수EXPO역 출발', '전세열차 #4550 · 여수EXPO역 승차'],
   ['15:03', '순천역 도착', '정차'],
-  ['15:05', '순천역 출발', '전세열차 #4550'],
-  ['18:55', '수원역 도착 · 해산', '보호자 귀가 확인']
-];
-const D3_SUNCHEON = [
-  ['07:00-08:00', '아침식사', '숙소식 · 짐 정리'],
-  ['08:30', '숙소 출발', '체크아웃 · 두고 가는 물건 확인'],
+  ['15:05', '순천역 출발', ''],
+  ['18:55', '수원역 도착', '종례 후 귀가 · 집 도착 즉시 담임 선생님께 문자']
+]);
+const D3_SUNCHEON = D3_HEAD.concat([
   ['09:30-12:30', '순천만국가정원', '전남 순천시', 'garden'],
   ['13:00-14:00', '중식 · 행복한 밥집', '외부식'],
-  ['14:20-14:30', '순천역 도착 · 탑승 수속', '반별 인원 확인'],
-  ['15:03', '전세열차 #4550 순천역 도착', '탑승'],
-  ['15:05', '순천역 출발', '전세열차 #4550'],
-  ['18:55', '수원역 도착 · 해산', '보호자 귀가 확인']
-];
-const D2_HEAD = [['07:30-08:30', '아침식사', '숙소식'], ['09:00', '숙소 출발', '']];
-const D2_TAIL = (dinner) => [[dinner, '저녁식사', '숙소식'], ['19:30-21:30', '레크리에이션', '학년 전체'], ['21:30-22:30', '자유시간 · 휴식', '점호 후 방 밖 외출 금지']];
-const ZIP = (t, entry) => [t, '여수 짚라인', '전남 여수시 · ' + entry + ' 탑승', 'zip'];
-const LUGE = (t) => [t, '루지 체험 (2회)', '전남 여수시', 'luge'];
-const HYANG = (t) => [t, '향일암', '전남 여수시 돌산읍', 'hyang'];
+  ['14:20-14:30', '순천역 도착 · 탑승 수속', ''],
+  ['15:03', '전세열차 #4550 순천역 도착', '순천역 승차'],
+  ['15:05', '순천역 출발', ''],
+  ['18:55', '수원역 도착', '종례 후 귀가 · 집 도착 즉시 담임 선생님께 문자']
+]);
 
 const GROUPS = [
   { name: '1조', classes: [3, 4, 6], station: '순천역 하차', days: {
     1: D1_SUNCHEON,
-    2: D2_HEAD.concat([ZIP('10:00-11:30', '10:00'), ['12:00-13:30', '중식 · 샤브올데이', '외부식'], LUGE('14:00-15:00'), HYANG('16:00-17:30')], D2_TAIL('18:00-19:00')),
+    2: D2_HEAD.concat([ZIP('10:00-11:30'), ['12:00-13:30', '중식 · 샤브올데이', '외부식'], LUGE('14:00-15:00'), HYANG('16:00-17:30')], D2_TAIL('18:00-19:00')),
     3: D3_YEOSU } },
   { name: '2조', classes: [1, 10], station: '순천역 하차', days: {
     1: D1_SUNCHEON,
-    2: D2_HEAD.concat([LUGE('10:00-11:30'), ['12:00-13:30', '중식 · 샤브올데이', '외부식'], ZIP('14:00-15:30', '13:30'), HYANG('16:00-17:30')], D2_TAIL('18:00-19:00')),
+    2: D2_HEAD.concat([LUGE('10:00-11:30'), ['12:00-13:30', '중식 · 샤브올데이', '외부식'], ZIP('14:00-15:00'), HYANG('16:00-17:30')], D2_TAIL('18:00-19:00')),
     3: D3_YEOSU } },
   { name: '3조', classes: [2, 5, 7], station: '여수EXPO역 하차', days: {
     1: D1_YEOSU(['15:00-16:00', '여수 아르떼뮤지엄', '전남 여수시', 'arte'], ['16:10-17:10', '여수 해상케이블카', '오동도 → 돌산대교', 'cable']),
-    2: D2_HEAD.concat([LUGE('10:00-11:00'), ['11:30-13:00', '중식 · 여수 쿠우쿠우', '외부식'], HYANG('14:00-15:00'), ZIP('15:30-17:00', '15:00')], D2_TAIL('17:30-18:30')),
+    2: D2_HEAD.concat([LUGE('10:00-11:30'), ['12:00-13:30', '중식 · 여수 쿠우쿠우', '외부식'], HYANG('14:00-15:00'), ZIP('15:30-17:00')], D2_TAIL('17:30-18:30')),
     3: D3_SUNCHEON } },
   { name: '4조', classes: [8, 9], station: '여수EXPO역 하차', days: {
-    1: D1_YEOSU(['15:00-16:00', '여수 해상케이블카', '돌산대교 → 오동도', 'cable'], ['16:10-17:10', '여수 아르떼뮤지엄', '전남 여수시', 'arte']),
-    2: D2_HEAD.concat([ZIP('10:00-11:00', '10:00'), ['11:30-13:00', '중식 · 여수 쿠우쿠우', '외부식'], LUGE('13:30-14:30'), HYANG('15:30-16:30')], D2_TAIL('17:00-18:00')),
+    1: D1_YEOSU(['15:00-16:00', '여수 해상케이블카', '오동도 → 돌산대교', 'cable'], ['16:10-17:10', '여수 아르떼뮤지엄', '전남 여수시', 'arte']),
+    2: D2_HEAD.concat([ZIP('10:00-11:00'), ['11:30-13:00', '중식 · 여수 쿠우쿠우', '외부식'], LUGE('13:30-14:30'), HYANG('15:30-16:30')], D2_TAIL('17:00-18:30')),
     3: D3_SUNCHEON } }
 ];
 const DAY_INFO = { 1: { label: '1일차 10/21(수)', short: '1일차' }, 2: { label: '2일차 10/22(목)', short: '2일차' }, 3: { label: '3일차 10/23(금)', short: '3일차' } };
 
+const PREP = [
+  { title: '공통 준비물', items: ['간편하고 단정한 복장 (긴팔옷 포함)', '치약·칫솔 등 세면도구', '자외선차단제, 모자, 운동화', '우산 또는 우의', '마스크 (권장)', '메모용 수첩, 필기구'] },
+  { title: '개인 준비물', items: ['개인 상비약 (멀미하는 학생은 멀미약 미리 준비)'] },
+  { title: '가방', items: ['기내용 캐리어 또는 짐가방 1개 + 휴대용 작은 가방 1개', '10kg 이하, 세 변의 합 115cm 이내', '필요한 경비 외의 돈·귀중품은 가져오지 않기', '숙소에서 샴푸·비누·수건(1인 1일 1장)이 제공돼요'] }
+];
+
 const RULES = [
-  { title: '열차·버스로 이동할 때', items: ['열차에서는 지정 좌석에 앉고 객차 연결 통로에 머물지 않아요.', '버스에서는 안전벨트를 항상 착용해요.', '반 대열을 유지하고 인원 확인 때 바로 대답해요.'] },
-  { title: '체험할 때', items: ['강사·진행요원 안내를 먼저 듣고 시작해요.', '짚라인·루지는 안전장비를 꼭 착용하고, 케이블카 안에서는 일어서지 않아요.', '몸이 안 좋으면 바로 선생님께 말해요.'] },
-  { title: '숙소(호텔 JCS 여수)에서', items: ['점호 이후 방 밖으로 나가지 않아요.', '다른 반·이성 방 출입은 금지예요.', '비상구 위치를 체크인할 때 확인해요.'] },
-  { title: '길을 잃거나 다쳤을 때', items: ['그 자리에 멈추고 담임 선생님께 전화해요.', '주변 친구와 함께 있고 혼자 움직이지 않아요.', '크게 다쳤으면 119에 먼저 연락해요.'] }
+  { title: '출발 (수원역)', items: ['08:00까지 수원역 2층 대합실 안 롯데리아 앞 집결 완료 → 08:39 탑승 시작 → 08:50 기차 출발', '해당 장소에서 출석 체크 후 기차로 이동해요.', '기차는 정시 출발! 놓치지 않도록 시간을 꼭 지켜요.'] },
+  { title: '버스에서', items: ['승하차 때 질서를 지키고 차량 번호를 확인해요.', '배정된 차량 외의 다른 차량으로 임의로 옮기지 않아요.', '자리에 앉으면 반드시 안전벨트를 착용해요.', '이동 중에는 자리에서 움직이거나 손을 밖으로 내밀지 않아요.', '휴게소에서는 시간을 확인하고 안전사고에 주의해요.', '쓰레기는 비닐봉투에 담아 휴지통에 버려요.', '비상망치·소화기 위치 등 기사님의 안내를 잘 듣고 지켜요.'] },
+  { title: '식당에서', items: ['식사 전 손을 깨끗이 씻어요. (식중독 주의)', '입구에서 줄을 서고 안쪽부터 순서대로 앉아요.', '음식은 남기지 않고, 부족하면 추가로 받아요.', '식사 후 의자는 식탁 안쪽으로, 잔반·그릇·수저는 구분해서 정해진 곳에 둬요.', '알레르기가 있으면 식단을 미리 확인하고 문제없는 음식만 먹어요.'] },
+  { title: '숙소에서', items: ['취침 시간(23:00)을 지키고 야간 안전요원의 지시에 따라요.', '같은 방 친구의 사생활을 존중하고 피해를 주지 않아요.', '지정된 숙소 외 장소 출입을 삼가고 계단·베란다에서 특히 조심해요.', '숙소 배정 모둠에서 이탈하지 않고 문단속을 철저히 해요.', '취사도구 사용, 불 켜기 등 화재 원인이 되는 행동은 하지 않아요.', '화투·음주·흡연·고성방가 등 학생 신분에 어긋나는 행동은 절대 금지예요.', '침구는 깨끗이, 분리수거는 철저히 해요.', '물건을 파손하면 보호자에게 연락하고 개인 변상해요.'] },
+  { title: '여행지 · 체험활동 중', items: ['자연환경과 공공기물을 아끼고 출입금지 구역에 들어가지 않아요.', '문화재를 만지거나 훼손하지 않고, 쓰레기를 함부로 버리지 않아요.', '정숙하게 대열을 유지하고 개인행동을 하지 않아요.', '선생님의 지시에 따라 빠르게 움직이고, 대열을 벗어날 때는 허락을 받아요.', '루지·짚라인·케이블카는 안전장비 착용과 진행요원 안내를 꼭 지켜요.'] },
+  { title: '성폭력 예방', items: ['내 몸의 소중함을 알고 상대방의 몸도 존중해요.', '위험한 상황에서는 사람이 많은 곳으로 피하고 도움을 요청하거나 휴대전화로 알려요.', '어둡고 후미진 곳에는 절대 가지 않아요.', '이성 간 지나친 신체 접촉을 피하고 개방된 곳에서 만나요.'] },
+  { title: '학교폭력 예방', items: ['친구들과 사이좋게 지내고 어려울 때 서로 도와요.', '고운 말을 쓰고 질서를 지켜요.', '심한 장난이나 몸싸움은 하지 않아요.', '사건이 생기면 바로 담임 선생님께 알려요.'] },
+  { title: '도난 예방', items: ['필요한 경비 외의 돈이나 귀중품은 가져오지 않아요.', '소지품에 이름을 쓰고 스스로 잘 관리해요.', '부득이한 귀중품·돈은 취침 시나 행사 중에 선생님께 맡겨요.'] },
+  { title: '응급 상황이 생기면', items: ['즉시 담임 선생님께 알려요.', '학급자치회장·부회장: 조장 통솔, 승하차 점검 후 담임 선생님께 수시 보고', '방장: 식사, 숙소 입실·퇴실, 취침 인원 점검'] },
+  { title: '복귀 후', items: ['10월 23일(금) 18:55 수원역 도착 예정, 종례 후 바로 귀가해요.', '집에 도착하면 즉시 담임 선생님께 도착 문자를 보내요.'] }
 ];
 
 /* ===== 화면 ===== */
@@ -193,7 +210,8 @@ const tel = (n) => /^[0-9-]+$/.test(n) ? 'tel:' + n.replace(/-/g, '') : '#';
 function load() { try { return parseInt(localStorage.getItem('trip-class'), 10) || null; } catch (e) { return null; } }
 function save(n) { try { localStorage.setItem('trip-class', String(n)); } catch (e) {} }
 const urlClass = parseInt(new URLSearchParams(location.search).get('class'), 10);
-const state = { tab: 'home', day: 1, cls: (urlClass >= 1 && urlClass <= 10) ? urlClass : (load() || 3) };
+const autoDay = () => { const n = new Date(); return (n.getFullYear() === 2026 && n.getMonth() === 9 && n.getDate() >= 21 && n.getDate() <= 23) ? n.getDate() - 20 : 1; };
+const state = { tab: 'home', day: autoDay(), cls: (urlClass >= 1 && urlClass <= 10) ? urlClass : (load() || 3) };
 
 function build() {
   const g = GROUPS.find((x) => x.classes.includes(state.cls));
@@ -201,10 +219,11 @@ function build() {
   const days = {};
   [1, 2, 3].forEach((d) => {
     days[d] = g.days[d].map((r) => {
-      const [s, e] = r[0].split('-');
+      const tilde = r[0].startsWith('~');
+      const [s, e] = r[0].replace('~', '').split('-');
       const site = r[3] ? SITES[r[3]] : null;
       if (site) n += 1;
-      return { time: s, end: e ? '~' + e : '', range: e ? s + '–' + e : s, title: r[1], sub: site ? r[2] + ' · 준비물: ' + site.bring : r[2], site, order: site ? n : 0, day: d };
+      return { time: s, end: tilde ? '까지' : (e ? '~' + e : ''), range: e ? s + '–' + e : s, title: r[1], sub: r[2], site, order: site ? n : 0, day: d };
     });
   });
   const course = [1, 2, 3].flatMap((d) => days[d]).filter((e) => e.site);
@@ -215,6 +234,7 @@ function render() {
   const { g, days, course } = build();
   const cls = state.cls;
   const mates = g.classes.filter((x) => x !== cls).map((x) => x + '반').join('·');
+  const back = g.station === '순천역 하차' ? '여수EXPO역 승차' : '순천역 승차';
   document.getElementById('badge').textContent = cls + '반 · ' + g.name;
   document.querySelectorAll('nav button').forEach((b) => {
     const on = b.dataset.tab === state.tab;
@@ -225,23 +245,31 @@ function render() {
   if (state.tab === 'home') {
     h += '<section class="card"><h2>우리 반 선택</h2><div class="grid5">' +
       [1,2,3,4,5,6,7,8,9,10].map((x) => `<button type="button" class="chip${x === cls ? ' on' : ''}" data-cls="${x}" aria-pressed="${x === cls}">${x}반</button>`).join('') +
-      `</div><p class="muted">${cls}반은 ${mates}과 같은 ${g.name}로 함께 이동해요 · 갈 때 ${g.station}</p></section>`;
+      `</div><p class="muted">${cls}반은 ${mates}과 같은 ${g.name}로 함께 이동해요<br>갈 때 #4549 ${g.station} · 올 때 #4550 ${back}</p></section>`;
+    h += '<section class="notice"><h2>출발 전 꼭 확인</h2><ul>' +
+      '<li><strong>10/21(수) 08:00</strong>까지 <strong>수원역 2층 대합실 안 롯데리아 앞</strong> 집결 (학부모 협조로 개별 도착)</li>' +
+      '<li>08:39 탑승 시작 · <strong>08:50 기차 정시 출발</strong> — 늦으면 탈 수 없어요</li>' +
+      '<li>복귀: 10/23(금) 18:55 수원역 도착 → 종례 후 바로 귀가, 집 도착 즉시 담임 선생님께 문자</li>' +
+      '</ul></section>';
     h += `<section class="card" style="gap:4px"><div class="prow" style="margin-bottom:8px"><h2>우리 반 체험 순서</h2><span class="muted">${g.name}</span></div>` +
-      course.map((e) => `<div class="step"><span class="num">${e.order}</span><div class="grow"><span class="t15">${e.site.name}</span><span class="muted">${e.site.place}</span></div><span class="when">${DAY_INFO[e.day].short} ${e.time}</span></div>`).join('') + '</section>';
+      course.map((e) => `<div class="step"><span class="num">${e.order}</span><div class="grow"><span class="t15">${e.site.name}</span><span class="muted">${e.site.rain ? '우천 시 ' + e.site.rain : e.site.place}</span></div><span class="when">${DAY_INFO[e.day].short} ${e.time}</span></div>`).join('') + '</section>';
     h += `<div class="quick"><a class="qbtn call" href="${tel(CONTACTS[0].num)}">${PHONE}<span>인솔 선생님 전화</span></a><button type="button" class="qbtn safe" data-tab="safety">${SHIELD}<span>안전 수칙 보기</span></button></div>`;
-    h += '<section class="notice"><h2>꼭 기억하기</h2><p>1일차 07:30 수원역 집결 · 전세열차 #4549 탑승 · 이동할 때는 반 대열 유지 · 체험 장소에서 개인 행동 금지</p></section>';
+    h += '<section class="card"><h2>준비물</h2>' + PREP.map((p) => `<div><p class="muted" style="font-weight:600;margin-bottom:4px">${p.title}</p><ul class="plain" style="gap:4px">${p.items.map((t) => `<li>${t}</li>`).join('')}</ul></div>`).join('') + '</section>';
   } else if (state.tab === 'schedule') {
-    const region = state.day === 1 ? (g.station === '순천역 하차' ? '수원 → 순천 → 여수' : '수원 → 여수') : state.day === 2 ? '여수' : (g.station === '순천역 하차' ? '여수 → 수원' : '여수 → 순천 → 수원');
+    const region = state.day === 1 ? (g.station === '순천역 하차' ? '수원 → 순천 → 여수' : '수원 → 순천(경유) → 여수') : state.day === 2 ? '여수' : (g.station === '순천역 하차' ? '여수 → 수원' : '여수 → 순천 → 수원');
     h += '<div class="seg" role="group" aria-label="일차 선택">' + [1, 2, 3].map((d) => `<button type="button" class="${d === state.day ? 'on' : ''}" data-day="${d}" aria-pressed="${d === state.day}">${DAY_INFO[d].short}</button>`).join('') + '</div>';
-    h += `<p class="muted" style="padding:0 4px">${DAY_INFO[state.day].label} · ${cls}반(${g.name}) 일정 · 지역: ${region}</p>`;
-    h += '<section class="tl">' + days[state.day].map((e) => `<div class="ev"><div class="time"><b>${e.time}</b><span>${e.end}</span></div><div class="grow" style="gap:3px">${e.site ? `<span class="tag">체험 ${e.order}</span>` : ''}<span class="t15">${e.title}</span>${e.sub ? `<span class="sub">${e.sub}</span>` : ''}</div></div>`).join('') + '</section>';
+    h += `<p class="muted" style="padding:0 4px">${DAY_INFO[state.day].label} · ${cls}반(${g.name}) 일정 · ${region}</p>`;
+    h += '<section class="tl">' + days[state.day].map((e) => `<div class="ev"><div class="time"><b>${e.time}</b><span>${e.end}</span></div><div class="grow" style="gap:3px">${e.site ? `<span class="tag">체험 ${e.order}</span>` : ''}<span class="t15">${e.title}</span>${e.sub ? (e.site && e.site.rain ? `<span class="rain">${e.sub}</span>` : `<span class="sub">${e.sub}</span>`) : ''}</div></div>`).join('') + '</section>';
   } else if (state.tab === 'safety') {
     h += '<section class="card sos"><h2>비상 연락처</h2>' + CONTACTS.map((c, i) => `<a href="${tel(c.num)}"><span>${i === 1 ? cls + '반 ' + c.who : c.who}</span><b>${c.num}</b></a>`).join('') + '</section>';
-    h += RULES.map((r) => `<section class="card"><h2 style="font-size:16px;font-weight:700">${r.title}</h2><ol>${r.items.map((t) => `<li>${t}</li>`).join('')}</ol></section>`).join('');
+    h += RULES.map((r, i) => `<details class="card"${i < 2 ? ' open' : ''}><summary>${r.title}</summary><ol>${r.items.map((t) => `<li>${t}</li>`).join('')}</ol></details>`).join('');
   } else {
     h += `<p class="muted" style="padding:0 4px">${cls}반이 방문하는 순서대로 정렬돼요</p>`;
-    h += course.map((e) => `<section class="card"><div class="prow"><span class="tag">${e.order}번째 · ${DAY_INFO[e.day].label}</span><span class="muted">${e.range}</span></div><h2 class="big">${e.site.name}</h2><div class="loc">${PIN}<span>${e.site.place}</span></div><dl><dt>준비물</dt><dd>${e.site.bring}</dd><dt class="w">주의</dt><dd class="w">${e.site.caution}</dd></dl></section>`).join('');
-    h += `<section class="card" style="border:1px solid #B8C2B9;gap:6px"><span class="muted" style="font-weight:600">숙소 · 1–2일차 (10/21–10/22)</span><h2 class="big">호텔 JCS 여수</h2><span class="muted" style="font-size:14px">도착 1일차 ${g.station === '순천역 하차' ? '18:00' : '17:30'} · 생활안내 후 저녁식사</span><span style="font-size:14px;color:#26322C">아침·저녁은 숙소식이에요. 방 배정은 담임 선생님이 반별로 안내해요.</span></section>`;
+    h += course.map((e) => `<section class="card"><div class="prow"><span class="tag">${e.order}번째 · ${DAY_INFO[e.day].label}</span><span class="muted">${e.range}</span></div><h2 class="big">${e.site.name}</h2><div class="loc">${PIN}<span>${e.site.place}</span></div><dl>${e.site.rain ? `<dt class="r">우천 시</dt><dd>${e.site.rain}</dd>` : ''}<dt>준비물</dt><dd>${e.site.bring}</dd><dt class="w">주의</dt><dd class="w">${e.site.caution}</dd></dl></section>`).join('');
+    h += `<section class="card" style="border:1px solid #B8C2B9;gap:8px"><span class="muted" style="font-weight:600">숙소 · 10/21–10/22 (2박)</span><h2 class="big">호텔 JCS 여수</h2>
+      <div class="loc">${PIN}<span>전남 여수시 돌산읍 돌산로 3169-14</span></div>
+      <a href="tel:0616435000" style="font-size:15px;font-weight:600">061-643-5000</a>
+      <dl><dt>도착</dt><dd>1일차 ${g.station === '순천역 하차' ? '18:00' : '17:30'} · 생활안내</dd><dt>식사</dt><dd>조식·석식 뷔페 (숙소식)</dd><dt>제공</dt><dd>샴푸, 비누, 수건 (1인 1일 1장)</dd><dt class="w">취침</dt><dd class="w">23:00 · 야간점호 후 취침, 배정 모둠 이탈 금지</dd></dl></section>`;
   }
   document.getElementById('main').innerHTML = h;
 }
