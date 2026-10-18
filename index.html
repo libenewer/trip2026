@@ -98,11 +98,20 @@ svg{flex-shrink:0}
 
 <script>
 /* ===== 연락처 (여기만 고치면 됩니다) ===== */
-const CONTACTS = [
-  { who: '인솔 총괄 선생님', num: '[연락처]' },
-  { who: '담임 선생님', num: '[연락처]' },
-  { who: '숙소 · 호텔 JCS 여수', num: '061-643-5000' }
-];
+const LEADER = { who: '총괄 고득호 선생님', num: '010-2873-5224' };
+const HOMEROOM = {
+  1: { name: '김수민', num: '0508-4948-4046' },
+  2: { name: '손성곤', num: '010-5686-8872' },
+  3: { name: '김채영', num: '010-9560-1685' },
+  4: { name: '김진영', num: '010-4751-7021' },
+  5: { name: '김현영', num: '0508-4948-8120' },
+  6: { name: '김수빈', num: '010-2279-4154' },
+  7: { name: '문효선', num: '0508-0374-9823' },
+  8: { name: '이고운', num: '0508-0374-3649' },
+  9: { name: '조효정', num: '0508-0374-1795' },
+  10: { name: '안보라미', num: '010-3440-2359' }
+};
+const HOTEL = { who: '숙소 · 호텔 JCS 여수', num: '061-643-5000' };
 
 const SITES = {
   garden: { name: '순천만국가정원', place: '전남 순천시', bring: '운동화, 모자, 자외선차단제', caution: '반별로 움직이고 집결 시간·장소를 꼭 지키기, 출입금지 구역 들어가지 않기' },
@@ -253,7 +262,7 @@ function render() {
       '</ul></section>';
     h += `<section class="card" style="gap:4px"><div class="prow" style="margin-bottom:8px"><h2>우리 반 체험 순서</h2><span class="muted">${g.name}</span></div>` +
       course.map((e) => `<div class="step"><span class="num">${e.order}</span><div class="grow"><span class="t15">${e.site.name}</span><span class="muted">${e.site.rain ? '우천 시 ' + e.site.rain : e.site.place}</span></div><span class="when">${DAY_INFO[e.day].short} ${e.time}</span></div>`).join('') + '</section>';
-    h += `<div class="quick"><a class="qbtn call" href="${tel(CONTACTS[0].num)}">${PHONE}<span>인솔 선생님 전화</span></a><button type="button" class="qbtn safe" data-tab="safety">${SHIELD}<span>안전 수칙 보기</span></button></div>`;
+    h += `<div class="quick"><a class="qbtn call" href="${tel(HOMEROOM[cls].num)}">${PHONE}<span>${cls}반 담임 ${HOMEROOM[cls].name} 선생님 전화</span></a><button type="button" class="qbtn safe" data-tab="safety">${SHIELD}<span>안전 수칙 보기</span></button></div>`;
     h += '<section class="card"><h2>준비물</h2>' + PREP.map((p) => `<div><p class="muted" style="font-weight:600;margin-bottom:4px">${p.title}</p><ul class="plain" style="gap:4px">${p.items.map((t) => `<li>${t}</li>`).join('')}</ul></div>`).join('') + '</section>';
   } else if (state.tab === 'schedule') {
     const region = state.day === 1 ? (g.station === '순천역 하차' ? '수원 → 순천 → 여수' : '수원 → 순천(경유) → 여수') : state.day === 2 ? '여수' : (g.station === '순천역 하차' ? '여수 → 수원' : '여수 → 순천 → 수원');
@@ -261,8 +270,8 @@ function render() {
     h += `<p class="muted" style="padding:0 4px">${DAY_INFO[state.day].label} · ${cls}반(${g.name}) 일정 · ${region}</p>`;
     h += '<section class="tl">' + days[state.day].map((e) => `<div class="ev"><div class="time"><b>${e.time}</b><span>${e.end}</span></div><div class="grow" style="gap:3px">${e.site ? `<span class="tag">체험 ${e.order}</span>` : ''}<span class="t15">${e.title}</span>${e.sub ? (e.site && e.site.rain ? `<span class="rain">${e.sub}</span>` : `<span class="sub">${e.sub}</span>`) : ''}</div></div>`).join('') + '</section>';
   } else if (state.tab === 'safety') {
-    h += '<section class="card sos"><h2>비상 연락처</h2>' + CONTACTS.map((c, i) => `<a href="${tel(c.num)}"><span>${i === 1 ? cls + '반 ' + c.who : c.who}</span><b>${c.num}</b></a>`).join('') + '</section>';
-    h += RULES.map((r, i) => `<details class="card"${i < 2 ? ' open' : ''}><summary>${r.title}</summary><ol>${r.items.map((t) => `<li>${t}</li>`).join('')}</ol></details>`).join('');
+    const mine = { who: `${cls}반 담임 ${HOMEROOM[cls].name} 선생님`, num: HOMEROOM[cls].num };
+    h += '<section class="card sos"><h2>비상 연락처</h2>' + [mine, LEADER, HOTEL].map((c) => `<a href="${tel(c.num)}"><span>${c.who}</span><b>${c.num}</b></a>`).join('') + '</section>';    h += RULES.map((r, i) => `<details class="card"${i < 2 ? ' open' : ''}><summary>${r.title}</summary><ol>${r.items.map((t) => `<li>${t}</li>`).join('')}</ol></details>`).join('');
   } else {
     h += `<p class="muted" style="padding:0 4px">${cls}반이 방문하는 순서대로 정렬돼요</p>`;
     h += course.map((e) => `<section class="card"><div class="prow"><span class="tag">${e.order}번째 · ${DAY_INFO[e.day].label}</span><span class="muted">${e.range}</span></div><h2 class="big">${e.site.name}</h2><div class="loc">${PIN}<span>${e.site.place}</span></div><dl>${e.site.rain ? `<dt class="r">우천 시</dt><dd>${e.site.rain}</dd>` : ''}<dt>준비물</dt><dd>${e.site.bring}</dd><dt class="w">주의</dt><dd class="w">${e.site.caution}</dd></dl></section>`).join('');
